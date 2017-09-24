@@ -10,10 +10,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp">
+        android:layout_margin="8dp">
 
         <ImageView
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:id="@+id/img_view"
             android:contentDescription="Images related to news will be loaded"
             android:layout_width="match_parent"

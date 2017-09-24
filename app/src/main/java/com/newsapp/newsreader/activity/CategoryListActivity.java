@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.newsapp.newsreader.R;
 import com.newsapp.newsreader.adapter.CategoryAdapter;
@@ -25,6 +28,8 @@ import retrofit2.Response;
 public class CategoryListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
+    private TextView tvAttribution, tvHint;
+    private ProgressBar progressBar;
     private RestService restService;
     private CategoryAdapter categoryAdapter;
     private String TAG = CategoryListActivity.class.getSimpleName();
@@ -39,6 +44,9 @@ public class CategoryListActivity extends AppCompatActivity {
 
 
     private void prepareViews() {
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        tvAttribution = (TextView) findViewById(R.id.tv_attribution);
+        tvHint = (TextView) findViewById(R.id.tv_hint);
         recyclerView = (RecyclerView) findViewById(R.id.category_recycler_view);
         restService = ApiUtils.getRestService();
 
@@ -58,6 +66,8 @@ public class CategoryListActivity extends AppCompatActivity {
     }
 
     private void prepareApi() {
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setIndeterminate(true);
         restService.getSources("en").enqueue(new Callback<SourceResponse>() {
             @Override
             public void onResponse(Call<SourceResponse> call, Response<SourceResponse> response) {
@@ -71,6 +81,9 @@ public class CategoryListActivity extends AppCompatActivity {
 
                         Set<String> distinctCategoryList = new HashSet<>(categoryList);
                         categoryAdapter.updateCategories(distinctCategoryList);
+                        tvHint.setVisibility(View.VISIBLE);
+                        tvAttribution.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
                         Log.d(TAG, "onResponse: Sources loaded from API");
                     } catch (Exception e) {
                         Log.d(TAG, "onResponse: " + e.getLocalizedMessage());

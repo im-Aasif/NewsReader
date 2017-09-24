@@ -18,7 +18,7 @@ public interface RestService {
     Call<SourceResponse> getSources(@Query("language") String language);
 
     @GET("sources")
-    Call<SourceResponse> getSourcesByCategory(@Query("category") String category);
+    Call<SourceResponse> getSourcesByCategory(@Query("language") String language, @Query("category") String category);
 
     @GET("articles")
     Call<ArticleResponse> getArticles(@Query("apiKey") String apiKey, @Query("source") String source, @Query("sortBy") String sortBy);

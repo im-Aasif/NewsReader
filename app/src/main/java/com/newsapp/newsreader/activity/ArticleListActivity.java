@@ -40,6 +40,9 @@ public class ArticleListActivity extends AppCompatActivity {
         source = getIntent().getParcelableExtra("srcObject");
 
         if (getSupportActionBar() != null) {
+            if (!source.getName().isEmpty()) {
+                getSupportActionBar().setTitle(source.getName());
+            }
             getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }

@@ -49,12 +49,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         holder.tvDesc.setText(article.getDescription());
         holder.tvAuthor.setText(article.getAuthor());
 
-        Glide.with(mContext)
-                .load(article.getUrlToImage())
+        Glide.with(mContext).load(article.getUrlToImage())
                 .thumbnail(0.2f)
-                .fitCenter()
                 .placeholder(R.drawable.default_placeholder)
                 .error(R.drawable.error_image)
+                .crossFade()
+                .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)
                 .into(holder.imageView);
 

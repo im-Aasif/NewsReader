@@ -66,7 +66,7 @@ public class SourceListActivity extends AppCompatActivity {
     }
 
     private void prepareApi() {
-        restService.getSourcesByCategory(category).enqueue(new Callback<SourceResponse>() {
+        restService.getSourcesByCategory("en", category).enqueue(new Callback<SourceResponse>() {
             @Override
             public void onResponse(Call<SourceResponse> call, Response<SourceResponse> response) {
                 if (response.isSuccessful()) {
@@ -77,7 +77,6 @@ public class SourceListActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         Log.d(TAG, "onResponse: " + e.getLocalizedMessage());
                     }
-
                 } else {
                     int statusCode = response.code();
                     Log.d(TAG, "onResponse: StatusCode: " + statusCode);

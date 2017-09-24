@@ -1,33 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.newsapp.newsreader.activity.SourceListActivity">
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true" />
+
     <TextView
+        android:id="@+id/tv_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:text="@string/category_alert"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault"
-        android:textColor="@color/primaryText" />
+        android:textColor="@color/primaryText"
+        android:visibility="gone" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/category_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_hint" />
 
     <TextView
+        android:id="@+id/tv_attribution"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
         android:text="@string/newsapi_disclaimer"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault"
-        android:textColor="@color/secondaryText" />
+        android:textColor="@color/secondaryText"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone" />
 
-</LinearLayout>
+</RelativeLayout>
