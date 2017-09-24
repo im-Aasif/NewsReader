@@ -4,12 +4,16 @@ package com.newsapp.newsreader.model;
  * Created by GLaDOS on 9/21/2017.
  */
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Source {
+public class Source implements Parcelable {
 
     @SerializedName("id")
     @Expose
@@ -147,4 +151,57 @@ public class Source {
             this.large = large;
         }
     }
+
+    protected Source(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        description = in.readString();
+        url = in.readString();
+        category = in.readString();
+        language = in.readString();
+        country = in.readString();
+//        urlsToLogos = (UrlsToLogos) in.readValue(UrlsToLogos.class.getClassLoader());
+        if (in.readByte() == 0x01) {
+            sortBysAvailable = new ArrayList<String>();
+            in.readList(sortBysAvailable, String.class.getClassLoader());
+        } else {
+            sortBysAvailable = null;
+        }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeString(url);
+        dest.writeString(category);
+        dest.writeString(language);
+        dest.writeString(country);
+//        dest.writeValue(urlsToLogos);
+        if (sortBysAvailable == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeList(sortBysAvailable);
+        }
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<Source> CREATOR = new Parcelable.Creator<Source>() {
+        @Override
+        public Source createFromParcel(Parcel in) {
+            return new Source(in);
+        }
+
+        @Override
+        public Source[] newArray(int size) {
+            return new Source[size];
+        }
+    };
 }

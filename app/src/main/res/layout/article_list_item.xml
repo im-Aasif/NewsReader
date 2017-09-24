@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:elevation="3dp"
+    app:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp">
+
+        <ImageView
+            android:scaleType="fitCenter"
+            android:id="@+id/img_view"
+            android:contentDescription="Images related to news will be loaded"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_margin="4dp" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_view"
+            android:textColor="@color/primaryText"
+            android:text="@string/app_name"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:layout_margin="2dp" />
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_author"
+            android:textColor="@color/primaryText"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault"
+            android:text="@string/app_name"
+            android:layout_margin="2dp" />
+
+        <TextView
+            android:layout_alignParentEnd="true"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:textAlignment="textEnd"
+            android:textColor="@color/secondaryText"
+            android:id="@+id/tv_author"
+            android:text="@string/app_name"
+            android:layout_below="@id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

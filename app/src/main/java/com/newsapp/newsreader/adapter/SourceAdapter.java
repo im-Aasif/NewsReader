@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
  * Created by GLaDOS on 9/19/2017.
  */
 
@@ -45,7 +46,6 @@ public class SourceAdapter extends RecyclerView.Adapter<SourceAdapter.ViewHolder
         holder.tvTitle.setText(source.getName());
         holder.tvDesc.setText(source.getDescription());
         holder.tvCategory.setText(source.getCategory());
-
     }
 
     @Override
@@ -63,6 +63,7 @@ public class SourceAdapter extends RecyclerView.Adapter<SourceAdapter.ViewHolder
             tvTitle = (TextView) itemView.findViewById(R.id.tv_name);
             tvDesc = (TextView) itemView.findViewById(R.id.tv_desc);
             tvCategory = (TextView) itemView.findViewById(R.id.tv_category);
+
             this.sourceItemListener = sourceItemListener;
             itemView.setOnClickListener(this);
         }
@@ -70,7 +71,7 @@ public class SourceAdapter extends RecyclerView.Adapter<SourceAdapter.ViewHolder
         @Override
         public void onClick(View view) {
             Source source = getSource(getAdapterPosition());
-            this.sourceItemListener.onPostClick(source.getId());
+            this.sourceItemListener.onPostClick(source);
 
             notifyDataSetChanged();
         }
@@ -86,6 +87,6 @@ public class SourceAdapter extends RecyclerView.Adapter<SourceAdapter.ViewHolder
     }
 
     public interface SourceItemListener {
-        void onPostClick(String id);
+        void onPostClick(Source src);
     }
 }
